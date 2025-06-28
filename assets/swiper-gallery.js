@@ -4,24 +4,20 @@ document.addEventListener("DOMContentLoaded", function () {
   if (productGallerySwiper) {
     const settings = JSON.parse(productGallerySwiper.dataset.swiperSettings);
 
-    console.log(settings);
-
     const swiperOptions = {
       slidesPerView: settings.slidesPerDesktop,
       spaceBetween: settings.spaceBetween,
       loop: true,
-      pagination: settings.showPagination
-        ? {
-            el: ".swiper-pagination",
-            clickable: true,
-          }
-        : false,
-      navigation: settings.showNavigation
-        ? {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          }
-        : false,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+        enabled: settings.showNavigation,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        enabled: settings.showPagination,
+      },
       breakpoints: {
         0: {
           slidesPerView: settings.slidesPerMobile,
@@ -30,11 +26,13 @@ document.addEventListener("DOMContentLoaded", function () {
           slidesPerView: settings.slidesPerTablet,
         },
         1024: {
-          slidesPerView: settings.slides_per_view_desktop,
+          slidesPerView: settings.slidesPerDesktop,
         },
       },
     };
 
-    new Swiper(productGallerySwiper, swiperOptions);
+    const productGallery = new Swiper(productGallerySwiper, swiperOptions);
+
+    productGallery.update();
   }
 });
