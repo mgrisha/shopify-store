@@ -52,12 +52,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("shopify:section:load", function (event) {
+  console.log("event.detail.sectionId: load", event.detail.sectionId);
   if (event.detail.sectionId === "main-product") {
     initProductGallery(event.detail.section);
   }
 });
 
 document.addEventListener("shopify:section:reloaded", function (event) {
+  console.log("event.detail.sectionId: reloaded", event.detail.sectionId);
   if (event.detail.sectionId === "main-product") {
     initProductGallery(event.detail.section);
   }
