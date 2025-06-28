@@ -71,6 +71,7 @@
       onload="this.media='all'"
     >
   {%- endif -%}
+  {{ 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css' | stylesheet_tag }}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <div class="page-width">
@@ -721,28 +722,9 @@
     <script type="application/ld+json">
       {{ product | structured_data }}
     </script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const swiper = new Swiper('.product-gallery', {
-          slidesPerView: {
-            320: '{{ section.settings.slides_mobile }}',
-            768: '{{ section.settings.slides_tablet }}',
-            1024: '{{ section.settings.slides_desktop }}'
-          },
-          spaceBetween: '{{ section.settings.space_between }}',
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-            enabled: '{{ section.settings.show_pagination | json }}'
-          },
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-            enabled: '{{ section.settings.show_arrows | json }}'
-          }
-        });
-      });
-    </script>
+    {% comment %} {{ 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js' | script_tag | defer }} {% endcomment %}
+    {% comment %} {{ 'product-gallery.js' | asset_url | script_tag }} {% endcomment %}
+    <script src="{{ 'swiper-gallery.js' | asset_url }}"></script>
   </div>
 </product-info>
 
@@ -2287,7 +2269,7 @@
     },
     {
       "type": "checkbox",
-      "id": "show_arrows",
+      "id": "show_navigation",
       "label": "Показувати стрілки навігації",
       "default": true
     },
