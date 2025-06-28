@@ -52,20 +52,22 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("shopify:section:load", function (event) {
-  const productSectionId = document.querySelector(
+  const productSectionType = document.querySelector(
     '[data-section-type="main-product"]'
-  ).dataset.sectionId;
+  );
+  const productSectionId = productSectionType.dataset.sectionId;
   if (event.detail.sectionId === productSectionId) {
-    initProductGallery(event.detail.section);
+    initProductGallery(productSectionType);
   }
 });
 
 document.addEventListener("shopify:section:reloaded", function (event) {
-  const productSectionId = document.querySelector(
+  const productSectionType = document.querySelector(
     '[data-section-type="main-product"]'
-  ).dataset.sectionId;
+  );
+  const productSectionId = productSectionType.dataset.sectionId;
   if (event.detail.sectionId === productSectionId) {
-    initProductGallery(event.detail.section);
+    initProductGallery(productSectionType);
   }
 });
 
