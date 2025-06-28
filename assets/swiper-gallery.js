@@ -9,6 +9,8 @@ function initProductGallery(section) {
     }
     const settings = JSON.parse(productGalleryElement.dataset.swiperSettings);
 
+    console.log("settings >", settings);
+
     const swiperOptions = {
       slidesPerView: settings.slidesPerDesktop,
       spaceBetween: settings.spaceBetween,

@@ -228,6 +228,24 @@
                     </div>
                   </details>
                 </div>
+
+                {%- if collection and collection.metafields.custom.color -%}
+                  {%- assign colors = collection.metafields.custom.color.value -%}
+                
+                  <div class="color-selector">
+                    {%- for color in colors -%}
+                      <label>
+                        <input
+                          type="radio"
+                          name="color"
+                          value="{{ color | downcase }}"
+                        >
+                        <span style="background-color: {{ color }};"></span> {{ color }}
+                      </label>
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+
               {%- when 'quantity_selector' -%}
                 <div
                   id="Quantity-Form-{{ section.id }}"
@@ -722,8 +740,6 @@
     <script type="application/ld+json">
       {{ product | structured_data }}
     </script>
-    {% comment %} {{ 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js' | script_tag | defer }} {% endcomment %}
-    {% comment %} {{ 'product-gallery.js' | asset_url | script_tag }} {% endcomment %}
     <script src="{{ 'swiper-gallery.js' | asset_url }}"></script>
   </div>
 </product-info>
