@@ -52,22 +52,28 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("shopify:section:load", function (event) {
-  console.log("event.detail.sectionId: load", event.detail.sectionId);
-  console.log("event.detail: load", event.detail);
-  if (event.detail.sectionId === "main-product") {
+  const productSectionId = document.querySelector(
+    '[data-section-type="main-product"]'
+  ).dataset.sectionId;
+  if (event.detail.sectionId === productSectionId) {
     initProductGallery(event.detail.section);
   }
 });
 
 document.addEventListener("shopify:section:reloaded", function (event) {
-  console.log("event.detail.sectionId: reloaded", event.detail.sectionId);
-  if (event.detail.sectionId === "main-product") {
+  const productSectionId = document.querySelector(
+    '[data-section-type="main-product"]'
+  ).dataset.sectionId;
+  if (event.detail.sectionId === productSectionId) {
     initProductGallery(event.detail.section);
   }
 });
 
 document.addEventListener("shopify:section:unload", function (event) {
-  if (event.detail.sectionId === "main-product") {
+  const productSectionId = document.querySelector(
+    '[data-section-type="main-product"]'
+  ).dataset.sectionId;
+  if (event.detail.sectionId === productSectionId) {
     if (productGallery) {
       productGallery.destroy(true, true);
       productGallery = null;
