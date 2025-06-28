@@ -81,9 +81,9 @@
         "slides_mobile": 1,
         "slides_tablet": 2,
         "slides_desktop": 3,
-        "space_between": 10,
+        "space_between": 15,
         "show_pagination": true,
-        "show_arrows": true,
+        "show_navigation": true,
         "padding_top": 36,
         "padding_bottom": 12
       }
