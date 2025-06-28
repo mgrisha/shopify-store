@@ -721,6 +721,28 @@
     <script type="application/ld+json">
       {{ product | structured_data }}
     </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const swiper = new Swiper('.product-gallery', {
+          slidesPerView: {
+            320: '{{ section.settings.slides_mobile }}',
+            768: '{{ section.settings.slides_tablet }}',
+            1024: '{{ section.settings.slides_desktop }}'
+          },
+          spaceBetween: '{{ section.settings.space_between }}',
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            enabled: '{{ section.settings.show_pagination | json }}'
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+            enabled: '{{ section.settings.show_arrows | json }}'
+          }
+        });
+      });
+    </script>
   </div>
 </product-info>
 
@@ -2248,6 +2270,50 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "range",
+      "id": "slides_mobile",
+      "label": "Слайдів одночасно (моб)",
+      "min": 1,
+      "max": 3,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "slides_tablet",
+      "label": "Слайдів одночасно (планшет)",
+      "min": 1,
+      "max": 4,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "slides_desktop",
+      "label": "Слайдів одночасно (ПК)",
+      "min": 1,
+      "max": 6,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "space_between",
+      "label": "Відступ між слайдами (px)",
+      "min": 0,
+      "max": 50,
+      "default": 10
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "Показувати пагінацію",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Показувати стрілки навігації",
+      "default": true
     }
   ]
 }

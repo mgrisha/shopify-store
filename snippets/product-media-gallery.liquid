@@ -42,6 +42,26 @@
   endif
 -%}
 
+<div class="swiper product-gallery">
+  <div class="swiper-wrapper">
+    {% for image in product.images %}
+      <div class="swiper-slide">
+        <img src="{{ image | image_url: width: 800 }}" alt="{{ image.alt | escape }}">
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if section.settings.show_arrows %}
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  {% endif %}
+
+  {% if section.settings.show_pagination %}
+    <div class="swiper-pagination"></div>
+  {% endif %}
+</div>
+
+{% comment %}
 <media-gallery
   id="MediaGallery-{{ section.id }}"
   role="region"
@@ -330,3 +350,4 @@
     </slider-component>
   {%- endif -%}
 </media-gallery>
+{% endcomment %}
