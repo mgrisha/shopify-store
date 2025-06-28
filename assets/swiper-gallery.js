@@ -51,6 +51,27 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+document.addEventListener("shopify:section:load", function (event) {
+  if (event.detail.sectionId === "main-product") {
+    initProductGallery(event.detail.section);
+  }
+});
+
+document.addEventListener("shopify:section:reloaded", function (event) {
+  if (event.detail.sectionId === "main-product") {
+    initProductGallery(event.detail.section);
+  }
+});
+
+document.addEventListener("shopify:section:unload", function (event) {
+  if (event.detail.sectionId === "main-product") {
+    if (productGallery) {
+      productGallery.destroy(true, true);
+      productGallery = null;
+    }
+  }
+});
+
 /*
 document.addEventListener("DOMContentLoaded", function () {
   const productGallerySwiper = document.querySelector(".product-gallery");
