@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("shopify:section:load", function (event) {
   console.log("event.detail.sectionId: load", event.detail.sectionId);
-  console.log("event.detail.sectionType: load", event.detail.sectionType);
+  console.log("event.detail: load", event.detail);
   if (event.detail.sectionId === "main-product") {
     initProductGallery(event.detail.section);
   }
