@@ -42,23 +42,25 @@
   endif
 -%}
 
-<div class="swiper product-gallery" data-swiper-settings='{"slidesPerMobile": "{{ section.settings.slides_mobile }}", "slidesPerTablet": "{{ section.settings.slides_tablet }}", "slidesPerDesktop": "{{ section.settings.slides_desktop }}", "spaceBetween": "{{ section.settings.space_between }}", "showPagination": "{{ section.settings.show_pagination }}", "showNavigation": "{{ section.settings.show_navigation }}"}'>
-  <div class="swiper-wrapper">
-    {% for image in product.images %}
-      <div class="swiper-slide">
-        <img src="{{ image | image_url: width: 800 }}" alt="{{ image.alt | escape }}">
-      </div>
-    {% endfor %}
+<div data-section-id="{{ section.id }}" data-section-type="main-product">
+  <div class="swiper product-gallery" data-swiper-settings='{"slidesPerMobile": "{{ section.settings.slides_mobile }}", "slidesPerTablet": "{{ section.settings.slides_tablet }}", "slidesPerDesktop": "{{ section.settings.slides_desktop }}", "spaceBetween": "{{ section.settings.space_between }}", "showPagination": "{{ section.settings.show_pagination }}", "showNavigation": "{{ section.settings.show_navigation }}"}'>
+    <div class="swiper-wrapper">
+      {% for image in product.images %}
+        <div class="swiper-slide">
+          <img src="{{ image | image_url: width: 800 }}" alt="{{ image.alt | escape }}">
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.show_navigation %}
+      <div class="swiper-button-prev"><span></span></div>
+      <div class="swiper-button-next"><span></span></div>
+    {% endif %}
+
+    {% if section.settings.show_pagination %}
+      <div class="swiper-pagination"></div>
+    {% endif %}
   </div>
-
-  {% if section.settings.show_navigation %}
-    <div class="swiper-button-prev"><span></span></div>
-    <div class="swiper-button-next"><span></span></div>
-  {% endif %}
-
-  {% if section.settings.show_pagination %}
-    <div class="swiper-pagination"></div>
-  {% endif %}
 </div>
 {% comment %}
 <media-gallery
