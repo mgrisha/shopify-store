@@ -66,9 +66,9 @@
           <img src="{{ image | image_url: width: 800 }}" alt="{{ image.alt | escape }}">
         </div>
         {% else %} {% endcomment %}
-        {% comment %} <div class="swiper-slide">
+        <div class="swiper-slide">
           <img src="{{ image | image_url: width: 800 }}" alt="{{ image.alt | escape }}">
-        </div> {% endcomment %}
+        </div>
         {% comment %} {% endif %} {% endcomment %}
       {% endfor %}
     </div>
