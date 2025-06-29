@@ -10,7 +10,10 @@ function initProductGallery(section) {
     }
     const settings = JSON.parse(productGalleryElement.dataset.swiperSettings);
 
-    selectColor = $(document).find('input[name*="Color"]:checked').val();
+    if ($(document).find('input[name*="Color"]:checked').length) {
+      selectColor = $(document).find('input[name*="Color"]:checked').val();
+    }
+
     const allImages = [];
     $(".all-slider-images .temp-image").each((index, item) => {
       const img = $(item).attr("data-src");
@@ -18,9 +21,14 @@ function initProductGallery(section) {
       allImages.push({ img, alt });
     });
 
-    const showImages = allImages.filter(
-      (imageInfo) => imageInfo.alt == selectColor
-    );
+    let showImages = allImages;
+
+    if (selectColor) {
+      showImages = allImages.filter(
+        (imageInfo) => imageInfo.alt == selectColor
+      );
+    }
+
     let htmlImages = "";
 
     showImages.map((image) => {
