@@ -1,4 +1,5 @@
 let productGallery = null;
+let selectColor = null;
 
 function initProductGallery(section) {
   const productGalleryElement = section.querySelector(".product-gallery");
@@ -9,11 +10,30 @@ function initProductGallery(section) {
     }
     const settings = JSON.parse(productGalleryElement.dataset.swiperSettings);
 
-    console.log("settings >", settings);
+    selectColor = $(document).find('input[name*="Color"]:checked').val();
+    const allImages = [];
+    $(".all-slider-images .temp-image").each((index, item) => {
+      const img = $(item).attr("data-src");
+      const alt = $(item).attr("data-alt");
+      allImages.push({ img, alt });
+    });
+
+    const showImages = allImages.filter(
+      (imageInfo) => imageInfo.alt == selectColor
+    );
+    let htmlImages = "";
+
+    showImages.map((image) => {
+      htmlImages += `<div class="swiper-slide"><img src="${image.img}" alt="${image.alt}"></div>`;
+    });
+
+    $(".product-gallery .swiper-wrapper").html(htmlImages);
 
     const swiperOptions = {
       slidesPerView: settings.slidesPerDesktop,
       spaceBetween: settings.spaceBetween,
+      observer: true,
+      observeParents: true,
       loop: true,
       navigation: {
         nextEl: ".swiper-button-next",
@@ -44,13 +64,17 @@ function initProductGallery(section) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+$(function () {
   const productSection = document.querySelector(
     '[data-section-type="main-product"]'
   );
   if (productSection) {
     initProductGallery(productSection);
   }
+
+  $(document).on("change", ".swatch-input__input", function () {
+    initProductGallery(productSection);
+  });
 });
 
 document.addEventListener("shopify:section:load", function (event) {

@@ -1561,3 +1561,13 @@ a.product__text {
   height: 100%;
   object-fit: cover;
 }
+
+/* .swiper-slide {
+  transition: opacity 0.3s ease;
+}
+
+.swiper-slide[style*="display: none"] {
+  opacity: 0;
+  pointer-events: none;
+  width: 0 !important;
+} */

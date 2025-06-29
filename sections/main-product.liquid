@@ -228,24 +228,6 @@
                     </div>
                   </details>
                 </div>
-
-                {%- if collection and collection.metafields.custom.color -%}
-                  {%- assign colors = collection.metafields.custom.color.value -%}
-                
-                  <div class="color-selector">
-                    {%- for color in colors -%}
-                      <label>
-                        <input
-                          type="radio"
-                          name="color"
-                          value="{{ color | downcase }}"
-                        >
-                        <span style="background-color: {{ color }};"></span> {{ color }}
-                      </label>
-                    {%- endfor -%}
-                  </div>
-                {%- endif -%}
-
               {%- when 'quantity_selector' -%}
                 <div
                   id="Quantity-Form-{{ section.id }}"
@@ -740,7 +722,6 @@
     <script type="application/ld+json">
       {{ product | structured_data }}
     </script>
-    <script src="{{ 'swiper-gallery.js' | asset_url }}"></script>
   </div>
 </product-info>
 
