@@ -53,7 +53,6 @@
 {% endfor %}
 
 <div data-section-id="{{ section.id }}" data-section-type="main-product">
-  <div>{{ select_color }}</div>
   <div class="all-slider-images" style="opacity: 0; visible: hidden; display: none;">
     {% for image in product.images %}
       <div class="temp-image" data-src="{{ image | image_url: width: 800 }}" data-alt="{{ image.alt | escape }}"></div>
@@ -63,9 +62,13 @@
     <div class="swiper-wrapper">
       {% for image in product.images %}
         {% if select_color == image.alt %}
-          <div class="swiper-slide">
-            <img src="{{ image | image_url: width: 800 }}" alt="{{ image.alt | escape }}">
-          </div>
+        <div class="swiper-slide">
+          <img src="{{ image | image_url: width: 800 }}" alt="{{ image.alt | escape }}">
+        </div>
+        {% else %}
+        <div class="swiper-slide">
+          <img src="{{ image | image_url: width: 800 }}" alt="{{ image.alt | escape }}">
+        </div>
         {% endif %}
       {% endfor %}
     </div>
