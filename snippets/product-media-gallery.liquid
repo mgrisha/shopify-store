@@ -42,7 +42,7 @@
   endif
 -%}
 
-{% for option in product.options_with_values %}
+{% comment %} {% for option in product.options_with_values %}
   {% if option.name == 'Color' %}
     {% for value in option.values %}
       {% if value.selected %}
@@ -50,7 +50,7 @@
       {% endif %}
     {% endfor %}
   {% endif %}
-{% endfor %}
+{% endfor %} {% endcomment %}
 
 <div data-section-id="{{ section.id }}" data-section-type="main-product">
   <div class="all-slider-images" style="opacity: 0; visible: hidden; display: none;">
@@ -61,15 +61,15 @@
   <div class="swiper product-gallery" data-swiper-settings='{"slidesPerMobile": "{{ section.settings.slides_mobile }}", "slidesPerTablet": "{{ section.settings.slides_tablet }}", "slidesPerDesktop": "{{ section.settings.slides_desktop }}", "spaceBetween": "{{ section.settings.space_between }}", "showPagination": "{{ section.settings.show_pagination }}", "showNavigation": "{{ section.settings.show_navigation }}"}'>
     <div class="swiper-wrapper">
       {% for image in product.images %}
-        {% if select_color == image.alt %}
+        {% comment %} {% if select_color == image.alt %}
         <div class="swiper-slide">
           <img src="{{ image | image_url: width: 800 }}" alt="{{ image.alt | escape }}">
         </div>
-        {% else %}
-        <div class="swiper-slide">
+        {% else %} {% endcomment %}
+        {% comment %} <div class="swiper-slide">
           <img src="{{ image | image_url: width: 800 }}" alt="{{ image.alt | escape }}">
-        </div>
-        {% endif %}
+        </div> {% endcomment %}
+        {% comment %} {% endif %} {% endcomment %}
       {% endfor %}
     </div>
 
