@@ -82,7 +82,7 @@
         "slides_tablet": 2,
         "slides_desktop": 1,
         "space_between": 10,
-        "show_pagination": false,
+        "show_pagination": true,
         "show_navigation": true,
         "padding_top": 36,
         "padding_bottom": 12
